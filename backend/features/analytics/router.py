@@ -93,6 +93,7 @@ async def record_visit(
 @router.get("/stats")
 async def get_analytics_stats(db: AsyncSession = Depends(get_db)):
     now = datetime.utcnow()
+    fifteen_mins_ago = now - timedelta(minutes=15)
 
     # 1. Total visits
     metric_res = await db.execute(
